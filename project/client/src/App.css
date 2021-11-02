@@ -1,0 +1,28 @@
+.app {
+color:blue;
+background-color: rgba(0, 0, 0, 0.692);
+}
+.app form{
+  width:600px;
+}
+.cars {
+  width:200px;
+  background-color:rgb(0 0 0 / 8%);
+}
+.app input[type=text] {
+width:100%;
+padding: 10px 12px;
+box-sizing: border-box;
+background-color: darkgrey  ;
+color:blue;
+text-align:center;
+}
+
+.delButton{
+  border-radius: 30%;
+  color:red;
+  float:right;
+  background-color: cadetblue;
+  border-color: cadetblue;
+  box-shadow: darkblue;
+}
