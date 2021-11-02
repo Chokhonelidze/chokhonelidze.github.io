@@ -118,7 +118,7 @@ class App extends React.Component {
           />
         );
       });
-      return <div className='app'>{owners}<button onClick={this.create}>+</button></div>;
+      return <div className='app'>{owners}<button className='addForm' onClick={this.create}>➕</button></div>;
     }
   }
 }

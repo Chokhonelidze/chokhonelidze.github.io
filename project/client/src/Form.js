@@ -113,9 +113,9 @@ class Form extends React.Component {
     let obj = { obj: "inputs", id: this.state.id, ref: inputs };
     this.references.push(obj);
     return (
-      <form id={this.state.id} key={this.state.index} onSubmit={this.save}>
-        <button key={"delButton_" + this.state.index} onClick={this.delete}>
-          X
+      <form id={this.state.id} key={this.state.index} className='Form' onSubmit={this.save}>
+        <button className='delButton' key={"delButton_" + this.state.index} onClick={this.delete}>
+        ❌
         </button>
         <Inputs
           ref={inputs}
@@ -129,9 +129,9 @@ class Form extends React.Component {
           <div className="container">
             <div className="row">{cars}</div>
           </div>
-          <button onClick={this.addNewCar}>+</button>
+          <button onClick={this.addNewCar} className='addCar'>➕</button>
         </fieldset>
-        <input type="submit" value="save" />
+        <input className='saveButon' type="submit" value="save" />
       </form>
     );
   }
