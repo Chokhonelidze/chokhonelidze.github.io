@@ -18,9 +18,9 @@ class App extends React.Component {
     fetch("http://localhost:3000/owner", {
       method: "GET",
       headers: {
-        "Content-Type": "text/plain",
+        "Content-Type": "application/json",
         Accept: "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:5000",
+        "Access-Control-Allow-Origin": "*",
       },
     })
       .then((response) => response.json())
@@ -58,6 +58,7 @@ class App extends React.Component {
     window.location.reload(false);
   }
   update(e) {
+    /*
     e.preventDefault();
     this.state.items[e.target.id].owner =
       this.state[e.target.id].childComponentRefs[
@@ -78,6 +79,7 @@ class App extends React.Component {
         cars: this.state.items[e.target.id].cars,
       }),
     });
+    */
   }
   delete(e) {
     fetch("http://localhost:3000/owner", {
@@ -85,7 +87,7 @@ class App extends React.Component {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:3000",
+        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
         address: this.state.items.address,

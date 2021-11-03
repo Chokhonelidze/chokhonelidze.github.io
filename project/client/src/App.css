@@ -3,7 +3,7 @@
   background-color: rgba(0, 0, 0, 0.692);
 }
 .app form {
-  width: 600px;
+  width: 700px;
 }
 .app button {
   background-color: cadetblue;
@@ -34,6 +34,10 @@
   margin-left: 10%;
   border-radius: 50%;
 }
+.carImage{
+  width:300px;
+  height:200px;
+}
 
 .saveButon {
   width: 100%;
@@ -45,6 +49,7 @@
 }
 .Form {
   margin-top: 20px;
+  margin-left: 20px;
   border-style: groove;
   border-color: rgb(185, 185, 233);
   border-radius: 2px;

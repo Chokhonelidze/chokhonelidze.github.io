@@ -9,7 +9,8 @@ class Cars extends React.Component {
             model : data.model,
             brand : data.brand,
             year : data.year,
-            color : data.color
+            color : data.color,
+            image : data.image,
         }
         this.update = this.update.bind(this);
     }
@@ -29,6 +30,9 @@ class Cars extends React.Component {
             case 'color':
                 this.setState({color : value});
                 break;
+            case 'image':
+                this.setState({image : value});
+                break;
             default:
                 throw Error;
 
@@ -36,8 +40,13 @@ class Cars extends React.Component {
        // e.target.focus();
     }
     render(){
+        let image = <input name='image' type='text'  value = "" placeholder="add link here" onChange={this.update}/>
+        if(this.state.image){
+            image = <img  alt=":( " src={this.state.image} className = 'carImage' />
+        }
         return(
             <p>
+                {image}
                 <input name='brand' type='text' value = {this.state.brand} onChange={this.update}/>
                 <input name='model' type='text' value = {this.state.model} onChange={this.update}/>
                 <input name='year' type='text' value = {this.state.year} onChange={this.update}/>

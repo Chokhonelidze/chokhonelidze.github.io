@@ -105,6 +105,7 @@ class Form extends React.Component {
             brand={car.brand}
             color={car.color}
             year={car.year}
+            image={car.image}
           />
         </div>
       );
