@@ -2,6 +2,7 @@ import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
 import Form from "./Form";
+require('dotenv').config();
 
 class App extends React.Component {
   constructor(props) {
