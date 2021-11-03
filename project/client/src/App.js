@@ -2,8 +2,7 @@ import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
 import Form from "./Form";
-require('dotenv').config();
-
+var server = process.env.REACT_APP_SERVER?process.env.REACT_APP_SERVER:"http://localhost:3000";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +15,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/owner", {
+    fetch(server+"/owner", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -41,7 +40,7 @@ class App extends React.Component {
       );
   }
   create(e) {
-    fetch("http://localhost:3000/owner", {
+    fetch(server+"/owner", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -65,7 +64,7 @@ class App extends React.Component {
       this.state[e.target.id].childComponentRefs[
         this.state[e.target.id].items.index
       ];
-    fetch("http://localhost:3000/owner", {
+    fetch("server/owner", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -83,7 +82,7 @@ class App extends React.Component {
     */
   }
   delete(e) {
-    fetch("http://localhost:3000/owner", {
+    fetch("server/owner", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

@@ -1,6 +1,5 @@
 .app {
   color: blue;
-  background-color: rgba(0, 0, 0, 0.692);
 }
 .app form {
   width: 700px;
@@ -60,4 +59,13 @@
   width: 200px;
   margin-top: 20px;
   margin-left: 20px;
+}
+@media screen and (max-width:600px){
+  .app form {
+    width: 100%;
+  }
+  .Form {
+    margin:0px;
+    margin-top: 5px;
+  }
 }

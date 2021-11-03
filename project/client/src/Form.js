@@ -1,7 +1,7 @@
 import React from "react";
 import Cars from "./Cars";
 import Inputs from "./inputs";
-
+var server = process.env.REACT_APP_SERVER?process.env.REACT_APP_SERVER:"http://localhost:5000";
 class Form extends React.Component {
   constructor(data) {
     super(data);
@@ -23,7 +23,7 @@ class Form extends React.Component {
     e.preventDefault();
     let id = Number(e.target.form.id);
 
-    fetch("http://localhost:3000/owner", {
+    fetch(server+"/owner", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -70,7 +70,7 @@ class Form extends React.Component {
     inputs = inputs.map((itm) => {
       return itm.ref.current.state;
     });
-    fetch("http://localhost:3000/owner", {
+    fetch(server+"/owner", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
