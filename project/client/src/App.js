@@ -1,8 +1,10 @@
 import "./App.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import Form from "./Form";
-var server = process.env.REACT_APP_SERVER?process.env.REACT_APP_SERVER:"http://localhost:3000";
+var server = process.env.REACT_APP_SERVER
+  ? process.env.REACT_APP_SERVER
+  : "http://localhost:3000";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +17,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch(server+"/owner", {
+    fetch(server + "/owner", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +42,7 @@ class App extends React.Component {
       );
   }
   create(e) {
-    fetch(server+"/owner", {
+    fetch(server + "/owner", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -120,7 +122,14 @@ class App extends React.Component {
           />
         );
       });
-      return <div className='app'>{owners}<button className='addForm' onClick={this.create}>➕</button></div>;
+      return (
+        <div className="app">
+          {owners}
+          <button className="addForm" onClick={this.create}>
+            ➕
+          </button>
+        </div>
+      );
     }
   }
 }

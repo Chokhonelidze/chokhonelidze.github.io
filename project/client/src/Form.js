@@ -1,7 +1,9 @@
 import React from "react";
 import Cars from "./Cars";
 import Inputs from "./inputs";
-var server = process.env.REACT_APP_SERVER?process.env.REACT_APP_SERVER:"http://localhost:5000";
+var server = process.env.REACT_APP_SERVER
+  ? process.env.REACT_APP_SERVER
+  : "http://localhost:5000";
 class Form extends React.Component {
   constructor(data) {
     super(data);
@@ -23,7 +25,7 @@ class Form extends React.Component {
     e.preventDefault();
     let id = Number(e.target.form.id);
 
-    fetch(server+"/owner", {
+    fetch(server + "/owner", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -70,7 +72,7 @@ class Form extends React.Component {
     inputs = inputs.map((itm) => {
       return itm.ref.current.state;
     });
-    fetch(server+"/owner", {
+    fetch(server + "/owner", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -114,9 +116,18 @@ class Form extends React.Component {
     let obj = { obj: "inputs", id: this.state.id, ref: inputs };
     this.references.push(obj);
     return (
-      <form id={this.state.id} key={this.state.index} className='Form' onSubmit={this.save}>
-        <button className='delButton' key={"delButton_" + this.state.index} onClick={this.delete}>
-        ❌
+      <form
+        id={this.state.id}
+        key={this.state.index}
+        className="Form"
+        onSubmit={this.save}
+      >
+        <button
+          className="delButton"
+          key={"delButton_" + this.state.index}
+          onClick={this.delete}
+        >
+          ❌
         </button>
         <Inputs
           ref={inputs}
@@ -130,9 +141,11 @@ class Form extends React.Component {
           <div className="container">
             <div className="row">{cars}</div>
           </div>
-          <button onClick={this.addNewCar} className='addCar'>➕</button>
+          <button onClick={this.addNewCar} className="addCar">
+            ➕
+          </button>
         </fieldset>
-        <input className='saveButon' type="submit" value="save" />
+        <input className="saveButon" type="submit" value="save" />
       </form>
     );
   }
