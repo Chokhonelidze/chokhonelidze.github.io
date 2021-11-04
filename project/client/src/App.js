@@ -46,7 +46,7 @@ class App extends React.Component {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
+        "Accept": "application/json",
         "Access-Control-Allow-Origin": "http://localhost:5000",
         "Access-Control-Allow-Headers":
           "Origin, X-Requested-With, Content-Type, Accept",
