@@ -5,6 +5,7 @@ import Form from "./Form";
 var server = process.env.REACT_APP_SERVER
   ? process.env.REACT_APP_SERVER
   : "http://localhost:3000";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -47,7 +48,7 @@ class App extends React.Component {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Access-Control-Allow-Origin": "http://localhost:5000",
+        "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers":
           "Origin, X-Requested-With, Content-Type, Accept",
       },
@@ -101,7 +102,7 @@ class App extends React.Component {
   render() {
     const { error, isLoaded, items } = this.state;
     if (error) {
-      return <div>Error: {error.message};</div>;
+      return <div><h1>server = {process.env.REACT_APP_SERVER} </h1> Error: {error.message};</div>;
     } else if (!isLoaded) {
       return <div>Loading..</div>;
     } else {

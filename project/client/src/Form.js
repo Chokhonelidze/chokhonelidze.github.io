@@ -4,6 +4,7 @@ import Inputs from "./inputs";
 var server = process.env.REACT_APP_SERVER
   ? process.env.REACT_APP_SERVER
   : "http://localhost:5000";
+
 class Form extends React.Component {
   constructor(data) {
     super(data);
