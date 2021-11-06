@@ -54,12 +54,10 @@ class App extends React.Component {
           .then((response) => response.json())
           .then(
             (result) => {
-              let arr = result.map((item)=>{
-                
-                 let obj= {}
-                 obj[item.id] = item.number;
-                return obj;
-              });
+              let arr = {};
+              for(let i =0 ; i<result.length;i++){
+                arr[result[i].id] = result[i].number+1; 
+              }
               this.setState({
                 synk: arr,
               });
@@ -145,16 +143,15 @@ class App extends React.Component {
     } else {
       let owners = this.state.items.map((item, index, obj) => {
         obj.index = index;
+        let number = 1;
+        let id =Number(item.id);
+        if(this.state.synk[id]){
+          number = this.state.synk[id];
+        }
         let refer = React.createRef();
         let itm = { owner: items.id, ref: refer };
         this.childRefs.push(itm);
-        let number = 1;
-        if(this.state.synk[items.id]){
-          number = this.state.synk[item.id]+1;
-          let temp = this.state.synk;
-          temp[items.id] = number;
-          this.setState({synk:temp});
-        }
+        
         
         return (
           <Form
