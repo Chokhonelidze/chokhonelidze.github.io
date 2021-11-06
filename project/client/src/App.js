@@ -104,7 +104,13 @@ class App extends React.Component {
     if (error) {
       return <div><h1>server = {process.env.REACT_APP_SERVER} </h1> Error: {error.message};</div>;
     } else if (!isLoaded) {
-      return <div>Loading..</div>;
+      return (
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      );
     } else {
       let owners = this.state.items.map((item, index, obj) => {
         obj.index = index;
