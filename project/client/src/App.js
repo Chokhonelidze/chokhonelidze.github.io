@@ -13,6 +13,7 @@ class App extends React.Component {
       error: null,
       isLoaded: false,
       items: [],
+      synk: [],
     };
     this.childRefs = [];
   }
@@ -40,6 +41,31 @@ class App extends React.Component {
             error,
           });
         }
+      )
+      .then(
+        fetch(server + "/synk", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        })
+          .then((response) => response.json())
+          .then(
+            (result) => {
+              let arr = result.map((item)=>{
+                
+                 let obj= {}
+                 obj[item.id] = item.number;
+                return obj;
+              });
+              this.setState({
+                synk: arr,
+              });
+            },
+            (error) => {}
+          )
       );
   }
   create(e) {
@@ -47,7 +73,7 @@ class App extends React.Component {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers":
           "Origin, X-Requested-With, Content-Type, Accept",
@@ -102,12 +128,17 @@ class App extends React.Component {
   render() {
     const { error, isLoaded, items } = this.state;
     if (error) {
-      return <div><h1>server = {process.env.REACT_APP_SERVER} </h1> Error: {error.message};</div>;
+      return (
+        <div>
+          <h1>server = {process.env.REACT_APP_SERVER} </h1> Error:{" "}
+          {error.message};
+        </div>
+      );
     } else if (!isLoaded) {
       return (
-        <div class="d-flex justify-content-center">
-          <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
+        <div className="d-flex justify-content-center">
+          <div className="spinner-border" role="status">
+            <span className="sr-only">Loading...</span>
           </div>
         </div>
       );
@@ -117,8 +148,17 @@ class App extends React.Component {
         let refer = React.createRef();
         let itm = { owner: items.id, ref: refer };
         this.childRefs.push(itm);
+        let number = 1;
+        if(this.state.synk[items.id]){
+          number = this.state.synk[item.id]+1;
+          let temp = this.state.synk;
+          temp[items.id] = number;
+          this.setState({synk:temp});
+        }
+        
         return (
           <Form
+            number ={number}
             ref={refer}
             index={index}
             key={"owner" + index}

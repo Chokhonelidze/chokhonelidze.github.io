@@ -10,6 +10,7 @@ class Form extends React.Component {
     super(data);
     this.references = [];
     this.state = {
+      number : data.number,
       ref: data.ref,
       index: data.index,
       id: data.id,
@@ -84,6 +85,7 @@ class Form extends React.Component {
       },
       body: JSON.stringify({
         id: this.state.id,
+        number:this.state.number,
         address: inputs[0].address,
         owner: inputs[0].owner,
         cars: car,
