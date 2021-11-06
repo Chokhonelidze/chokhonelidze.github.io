@@ -16,9 +16,71 @@ class App extends React.Component {
       synk: [],
     };
     this.childRefs = [];
+    this.loadData = this.loadData.bind(this);
+    this.loadAndCompare = this.loadAndCompare.bind(this);
+    this.loadSynk = this.loadSynk.bind(this);
   }
 
   componentDidMount() {
+    this.loadData();
+    setInterval(this.loadAndCompare, 500);
+  }
+  loadAndCompare() {
+    if (this.state.isLoaded) {
+       this.loadSynk().then(result =>{
+        let synk = result;
+        if (
+          typeof this.state == "undefined" &&
+          typeof this.state.synk == "undefined"
+        ) {
+          this.setState({ synk: synk });
+        } else {
+          for (let [key, value] in synk) {
+            if (this.state.synk[key]) {
+              if (this.state.synk[key] < value) {
+                this.setState({ synk: synk });
+                this.loadData();
+                break;
+              }
+            } else {
+              this.setState({ synk: synk });
+              this.loadData();
+              break;
+            }
+          }
+        }
+      });
+    }
+  
+  }
+
+  loadSynk() {
+    let returnarr = {};
+   returnarr = fetch(server + "/synk", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+      .then((response) => response.json())
+      .then(
+        (result) => {
+          let arr = {};
+          for (let i = 0; i < result.length; i++) {
+            arr[result[i].id] = result[i].number + 1;
+          }
+          return arr;
+        },
+        (error) => {
+     
+        }
+      )
+      return returnarr;
+
+  }
+  loadData() {
     fetch(server + "/owner", {
       method: "GET",
       headers: {
@@ -41,29 +103,6 @@ class App extends React.Component {
             error,
           });
         }
-      )
-      .then(
-        fetch(server + "/synk", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
-        })
-          .then((response) => response.json())
-          .then(
-            (result) => {
-              let arr = {};
-              for(let i =0 ; i<result.length;i++){
-                arr[result[i].id] = result[i].number+1; 
-              }
-              this.setState({
-                synk: arr,
-              });
-            },
-            (error) => {}
-          )
       );
   }
   create(e) {
@@ -144,18 +183,17 @@ class App extends React.Component {
       let owners = this.state.items.map((item, index, obj) => {
         obj.index = index;
         let number = 1;
-        let id =Number(item.id);
-        if(this.state.synk[id]){
+        let id = Number(item.id);
+        if (this.state.synk[id]) {
           number = this.state.synk[id];
         }
         let refer = React.createRef();
         let itm = { owner: items.id, ref: refer };
         this.childRefs.push(itm);
-        
-        
+
         return (
           <Form
-            number ={number}
+            number={number}
             ref={refer}
             index={index}
             key={"owner" + index}
