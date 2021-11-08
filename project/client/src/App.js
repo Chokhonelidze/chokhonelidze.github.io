@@ -35,19 +35,22 @@ class App extends React.Component {
         ) {
           this.setState({ synk: synk });
         } else {
-          for (let [key, value] in synk) {
+          Object.entries(synk).forEach(([key,value])=> {
+            //console.log(this.state.synk[key],value,key);
             if (this.state.synk[key]) {
+              console.log(this.state.synk[key],value)
               if (this.state.synk[key] < value) {
-                this.setState({ synk: synk });
+                this.setState({ synk: synk,isLoaded:false});
                 this.loadData();
-                break;
+    
+               // this.render();
               }
-            } else {
-              this.setState({ synk: synk });
+            } else if(this.state.synk[key] !== 0 && this.state.synk[key]!==null){
+              this.setState({ synk: synk,isLoaded:false});
               this.loadData();
-              break;
+             // this.render();           
             }
-          }
+          });
         }
       });
     }
@@ -69,7 +72,7 @@ class App extends React.Component {
         (result) => {
           let arr = {};
           for (let i = 0; i < result.length; i++) {
-            arr[result[i].id] = result[i].number + 1;
+            arr[result[i].id] = result[i].number;
           }
           return arr;
         },
@@ -196,7 +199,7 @@ class App extends React.Component {
             number={number}
             ref={refer}
             index={index}
-            key={"owner" + index}
+            key={number+" "+index}
             id={item.id}
             owner={item.owner}
             address={item.address}

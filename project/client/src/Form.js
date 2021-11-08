@@ -74,6 +74,7 @@ class Form extends React.Component {
     inputs = inputs.map((itm) => {
       return itm.ref.current.state;
     });
+    this.setState({id:inputs[0].id,address:inputs[0].address,owner:inputs[0].owner,cars:this.state.cars});
     fetch(server + "/owner", {
       method: "PUT",
       headers: {
@@ -90,7 +91,8 @@ class Form extends React.Component {
         owner: inputs[0].owner,
         cars: car,
       }),
-    });
+    })
+    
   }
   render() {
     let cars = this.state.cars.map((car, index) => {
