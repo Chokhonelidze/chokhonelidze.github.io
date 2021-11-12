@@ -7,6 +7,8 @@ var server = process.env.REACT_APP_SERVER
   ? process.env.REACT_APP_SERVER
   : "http://localhost:3000";
 
+var API =process.env.API?process.env.API:'/api';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +21,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch(server + "/owner", {
+    fetch(server + API+"/owner", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +46,7 @@ class App extends React.Component {
       );
   }
   create(e) {
-    fetch(server + "/owner", {
+    fetch(server + API+"/owner", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -86,7 +88,7 @@ class App extends React.Component {
     */
   }
   delete(e) {
-    fetch("server/owner", {
+    fetch(server+API+"/owner", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

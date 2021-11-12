@@ -4,6 +4,7 @@ import Inputs from "./inputs";
 var server = process.env.REACT_APP_SERVER
   ? process.env.REACT_APP_SERVER
   : "http://localhost:5000";
+  var API =process.env.API?process.env.API:'/api';
 
 class Form extends React.Component {
   constructor(data) {
@@ -26,7 +27,7 @@ class Form extends React.Component {
     e.preventDefault();
     let id = Number(e.target.form.id);
 
-    fetch(server + "/owner", {
+    fetch(server+ API + "/owner", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +74,7 @@ class Form extends React.Component {
     inputs = inputs.map((itm) => {
       return itm.ref.current.state;
     });
-    fetch(server + "/owner", {
+    fetch(server +API+ "/owner", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
