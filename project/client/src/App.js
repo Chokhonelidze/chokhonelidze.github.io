@@ -7,7 +7,7 @@ var server = process.env.REACT_APP_SERVER
   ? process.env.REACT_APP_SERVER
   : "http://localhost:3000";
 
-var API =process.env.API?process.env.API:'/api';
+var API = process.env.API ? process.env.API : "/api";
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch(server + API+"/owner", {
+    fetch(server + API + "/owner", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -46,11 +46,11 @@ class App extends React.Component {
       );
   }
   create(e) {
-    fetch(server + API+"/owner", {
+    fetch(server + API + "/owner", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers":
           "Origin, X-Requested-With, Content-Type, Accept",
@@ -88,7 +88,7 @@ class App extends React.Component {
     */
   }
   delete(e) {
-    fetch(server+API+"/owner", {
+    fetch(server + API + "/owner", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -105,7 +105,12 @@ class App extends React.Component {
   render() {
     const { error, isLoaded, items } = this.state;
     if (error) {
-      return <div><h1>server = {process.env.REACT_APP_SERVER} </h1> Error: {error.message};</div>;
+      return (
+        <div>
+          <h1>server = {process.env.REACT_APP_SERVER} </h1> Error:{" "}
+          {error.message};
+        </div>
+      );
     } else if (!isLoaded) {
       return (
         <div className="d-flex justify-content-center">
@@ -134,7 +139,7 @@ class App extends React.Component {
       });
       return (
         <div className="app">
-          {owners}
+          <div className="gridContainer">{owners}</div>
           <button className="addForm" onClick={this.create}>
             ➕
           </button>

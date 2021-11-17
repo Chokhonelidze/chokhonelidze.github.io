@@ -8,6 +8,18 @@
   background-color: cadetblue;
   border-color: cadetblue;
 }
+@media only screen and (max-width: 600px) {
+  .gridContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .gridContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
 .cars {
   width: 200px;
   background-color: rgb(0 0 0 / 8%);
@@ -33,9 +45,9 @@
   margin-left: 10%;
   border-radius: 50%;
 }
-.carImage{
-  width:300px;
-  height:200px;
+.carImage {
+  width: 300px;
+  height: 200px;
 }
 
 .saveButon {
@@ -60,12 +72,12 @@
   margin-top: 20px;
   margin-left: 20px;
 }
-@media screen and (max-width:600px){
+@media screen and (max-width: 600px) {
   .app form {
     width: 100%;
   }
   .Form {
-    margin:0px;
+    margin: 0px;
     margin-top: 5px;
   }
 }
